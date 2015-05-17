@@ -2,7 +2,7 @@
 
 namespace Rubicon\Assert;
 
-use Rubicon\Assert\Assertion\AbstractAssertion;
+use Rubicon\Assert\Extension\AbstractExtension;
 use Zend\ServiceManager\ConfigInterface;
 use Zend\ServiceManager\Exception;
 use Zend\ServiceManager\ServiceManager;
@@ -18,8 +18,8 @@ class AsserterManager extends ServiceManager
      * @var array
      */
     protected $invokableClasses = [
-        'string'            => 'Rubicon\Assert\Assertion\String',
-        'object'            => 'Rubicon\Assert\Assertion\Object',
+        'string'            => 'Rubicon\Assert\Extension\String',
+        'object'            => 'Rubicon\Assert\Extension\Object',
         'constraintmanager' => 'Rubicon\Assert\Constraint\ConstraintManager'
     ];
 
@@ -49,7 +49,7 @@ class AsserterManager extends ServiceManager
         parent::__construct($configuration);
 
         $this->addInitializer(function($instance){
-            if ($instance instanceof AbstractAssertion) {
+            if ($instance instanceof AbstractExtension) {
                 $instance->setServiceLocator($this->get('constraint-manager'));
                 $instance->setEventManager($this->get('eventmanager'));
             }

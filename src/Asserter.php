@@ -3,6 +3,7 @@
 namespace Rubicon\Assert;
 
 use Zend\EventManager\EventManagerInterface;
+use Zend\ServiceManager\Config;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
@@ -62,6 +63,20 @@ class Asserter
         call_user_func_array([$this->events, 'attach'], func_get_args());
 
         return $this;
+    }
+
+    /**
+     * @param $config
+     */
+    public function extend(array $config)
+    {
+        $manager = $this->locator;
+        if (isset($config['extensions'])) {
+            (new Config($config['extensions']))->configureServiceManager($manager);
+        }
+        if (isset($config['constraints'])) {
+            (new Config($config['constraints']))->configureServiceManager($manager->get('constraint-manager'));
+        }
     }
 
     /**

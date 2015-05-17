@@ -1,13 +1,13 @@
 <?php
 
-namespace Rubicon\Assert\Assertion;
+namespace Rubicon\Assert\Extension;
 
 /**
  * @method $this contains
  * @method $this equalTo
  * @method $this match
  */
-class String extends AbstractAssertion
+class String extends AbstractExtension
 {
     /**
      * @var string

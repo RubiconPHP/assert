@@ -1,6 +1,6 @@
 <?php
 
-namespace Rubicon\Assert\Assertion;
+namespace Rubicon\Assert\Extension;
 
 /**
  * @method $this childOf
@@ -9,7 +9,7 @@ namespace Rubicon\Assert\Assertion;
  * @method $this objectOf
  * @method $this beThrown
  */
-class Object extends AbstractAssertion
+class Object extends AbstractExtension
 {
     /**
      * @var string

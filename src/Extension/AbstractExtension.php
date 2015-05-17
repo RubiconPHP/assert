@@ -1,6 +1,6 @@
 <?php
 
-namespace Rubicon\Assert\Assertion;
+namespace Rubicon\Assert\Extension;
 
 use Rubicon\Assert\Constraint\Articulation;
 use Rubicon\Assert\Constraint\ConstraintInterface;
@@ -17,9 +17,10 @@ use Zend\ServiceManager\ServiceLocatorAwareInterface;
  * @method $this should
  * @method $this satisfy
  */
-abstract class AbstractAssertion implements
+abstract class AbstractExtension implements
     ServiceLocatorAwareInterface,
-    EventManagerAwareInterface
+    EventManagerAwareInterface,
+    ExtensionInterface
 {
     use ServiceLocatorAwareTrait,
         EventManagerAwareTrait;
