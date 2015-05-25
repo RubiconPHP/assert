@@ -21,21 +21,18 @@ class Object extends AbstractExtension
      *
      * @return $this
      */
-    public function setValue($value)
+    public function validate($value)
     {
         if (! is_object($value)) {
             throw new \InvalidArgumentException('Expecting an object, got' . gettype($value));
         }
-        $this->value = $value;
     }
 
     /**
-     * @param $service
-     *
      * @return string
      */
-    protected function getServiceName($service)
+    public function getNamespace()
     {
-        return 'object.' . $service;
+        return 'object';
     }
 }

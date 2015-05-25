@@ -1,17 +1,19 @@
 <?php
 namespace Rubicon\Assert;
+use Rubicon\Assert\Extension\String;
+
 $assert = require 'bootstrap.php';
 
-class JsonExtension extends Extension\AbstractExtension
+class JsonExtension extends String
 {
     public function setValue($value)
     {
         $this->value = json_decode($value);
     }
 
-    protected function getServiceName($service)
+    public function getNamespace()
     {
-        return 'json.' . $service;
+        return 'json';
     }
 }
 
@@ -29,7 +31,7 @@ class JsonProperty implements Constraint\ConstraintInterface
 
 }
 
-$assert->extend([
+$assert->register([
     'extensions' => [
         'invokables' => [
             'json' => JsonExtension::class
@@ -42,5 +44,7 @@ $assert->extend([
     ]
 ]);
 
-$assert->json('{"name":"ronan"}')
-    ->contains('name');
+$assert
+    ->json('{"name":"ronan"}')
+    ->contains('name')
+;

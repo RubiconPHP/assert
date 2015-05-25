@@ -91,9 +91,35 @@ abstract class AbstractExtension implements
     }
 
     /**
-     * @param $service
+     * @param mixed $value
+     *
+     * @return void
+     */
+    public function setValue($value)
+    {
+        $this->validate($value);
+        $this->value = $value;
+    }
+
+    /**
+     * @param string $service
+     *
+     * @return string
+     */
+    public function getServiceName($service)
+    {
+        return $this->getNamespace() . '.' . $service;
+    }
+
+    /**
+     * @param $value
      *
      * @return mixed
      */
-    abstract protected function getServiceName($service);
+    abstract protected function validate($value);
+
+    /**
+     * @return mixed
+     */
+    abstract protected function getNamespace();
 }

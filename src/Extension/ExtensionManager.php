@@ -1,16 +1,15 @@
 <?php
 
-namespace Rubicon\Assert;
+namespace Rubicon\Assert\Extension;
 
-use Rubicon\Assert\Extension\AbstractExtension;
 use Zend\ServiceManager\ConfigInterface;
 use Zend\ServiceManager\Exception;
 use Zend\ServiceManager\ServiceManager;
 
-class AsserterManager extends ServiceManager
+class ExtensionManager extends ServiceManager
 {
     /**
-     * @var self
+     * @var ExtensionManager
      */
     private static $instance;
 
@@ -20,6 +19,7 @@ class AsserterManager extends ServiceManager
     protected $invokableClasses = [
         'string'            => 'Rubicon\Assert\Extension\String',
         'object'            => 'Rubicon\Assert\Extension\Object',
+        'that'              => 'Rubicon\Assert\Extension\Callback',
         'constraintmanager' => 'Rubicon\Assert\Constraint\ConstraintManager'
     ];
 
@@ -31,7 +31,7 @@ class AsserterManager extends ServiceManager
     ];
 
     /**
-     * @return self
+     * @return ExtensionManager
      */
     public static function getInstance()
     {

@@ -2,6 +2,7 @@
 
 namespace Rubicon\Assert;
 
+use Rubicon\Assert\Extension\ExtensionManager;
 use Zend\EventManager\EventManagerInterface;
 use Zend\ServiceManager\Config;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -33,7 +34,7 @@ class Asserter
     public static function getInstance()
     {
         if (null === self::$instance) {
-            $manager        = AsserterManager::getInstance();
+            $manager        = ExtensionManager::getInstance();
             $events         = $manager->get('event-manager');
             self::$instance = new self($manager, $events);
         }
@@ -68,7 +69,7 @@ class Asserter
     /**
      * @param $config
      */
-    public function extend(array $config)
+    public function register(array $config)
     {
         $manager = $this->locator;
         if (isset($config['extensions'])) {

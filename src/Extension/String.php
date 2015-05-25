@@ -10,33 +10,24 @@ namespace Rubicon\Assert\Extension;
 class String extends AbstractExtension
 {
     /**
-     * @var string
-     */
-    protected $value;
-
-    /**
      * @param string $value
      *
      * @return $this
      */
-    public function setValue($value)
+    public function validate($value)
     {
         if (! is_string($value)) {
             throw new \InvalidArgumentException(
                 'Expecting a string, got' . (is_object($value) ? get_class($value) : gettype($value))
             );
         }
-        $this->value = $value;
     }
 
     /**
-     * @param $service
-     *
      * @return string
      */
-    protected function getServiceName($service)
+    public function getNamespace()
     {
-        return 'string.' . $service;
+        return 'string';
     }
-
 }
